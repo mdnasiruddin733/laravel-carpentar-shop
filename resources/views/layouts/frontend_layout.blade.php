@@ -63,7 +63,7 @@
     @yield('content')
 @include('components.footer')
 <div class="preloader">
-    <h5>Loading...</h5>
+    <h5 class="text-danger"><i class="fa fa-cog  fa-spin "></i>Loading...</h5>
 </div>
 
 <script src="{{ asset('assets/js/jquery-3.3.1.min.js')}}"></script>

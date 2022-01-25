@@ -25,7 +25,7 @@
         </div>
         <div class="container">
             <div class="checkout__form">
-                <form action="{{ route('services.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('repairing.post') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-lg-8 col-md-6">

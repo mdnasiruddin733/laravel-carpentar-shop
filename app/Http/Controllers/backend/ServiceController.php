@@ -37,6 +37,10 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
+    }
+
+    public function storeRepairing(Request $request)
+    {
         $request->validate([
             'image' => 'required',
             'first_name' => 'required',

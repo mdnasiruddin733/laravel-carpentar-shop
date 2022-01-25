@@ -47,7 +47,7 @@
     </div>
 </div>
 <div class="preloader">
-    <h5>Loading...</h5>
+    <h5 class="text-danger"><i class="fa fa-cog  fa-spin"></i>Loading...</h5>
 </div>
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>

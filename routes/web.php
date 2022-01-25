@@ -23,6 +23,8 @@ Route::get('repairing', 'FrontendController@repairing')->name('frontend.repairin
 Route::get('booking/{slug}', 'FrontendController@bookingDesing')->name('frontend.booking');
 Route::get('product-details/{id}', 'FrontendController@productDetails')->name('frontend.product-details');
 Route::get('checkout/{id}', 'FrontendController@checkout')->name('frontend.checkout');
+Route::post('repairing-submit', 'backend\ServiceController@storeRepairing')->name('repairing.post');
+
 
 
 // backend route
