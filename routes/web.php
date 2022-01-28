@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\backend\BookingController;
+use App\Http\Controllers\RepairController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,12 +22,12 @@ Route::get('/', 'FrontendController@index')->name('frontend.index');
 Route::get('shop', 'FrontendController@shop')->name('frontend.shop');
 Route::get('design', 'FrontendController@designList')->name('frontend.design');
 Route::get('repairing', 'FrontendController@repairing')->name('frontend.repairing');
-Route::get('booking/{slug}', 'FrontendController@bookingDesing')->name('frontend.booking');
+Route::get('booking/{id}', 'FrontendController@bookingDesing')->name('frontend.booking');
 Route::get('product-details/{id}', 'FrontendController@productDetails')->name('frontend.product-details');
 Route::get('checkout/{id}', 'FrontendController@checkout')->name('frontend.checkout');
 Route::post('repairing-submit', 'backend\ServiceController@storeRepairing')->name('repairing.post');
 
-
+Route::post("booking/create",[App\Http\Controllers\BookingController::class,"create"])->name("frontend.booking.create");
 
 // backend route
 Route::get('admin/login', 'Auth\AdminAuthController@loginForm')->name('admin.login.get');
@@ -47,4 +49,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('carpenter', function (){
         return view('backend.carpenter.index');
     })->name('carpenter.index');
+
+
+    Route::get("/repairing/{id}",[RepairController::class,"show"]);
+    Route::get("/repairing/delete/{id}",[RepairController::class,"delete"]);
+    Route::get('/reparing/approve/{id}',[RepairController::class,"approve"]);
+    Route::get('/reparing/disapprove/{id}',[RepairController::class,"disapprove"]);
+
+
 });

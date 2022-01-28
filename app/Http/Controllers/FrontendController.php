@@ -19,16 +19,18 @@ class FrontendController extends Controller
     }
     public function designList()
     {
-        return view('frontend.design');
+        $products=Product::latest()->get();
+        return view('frontend.design',compact("products"));
     }
     public function repairing()
     {
         return view('frontend.repairing');
     }
 
-    public function bookingDesing($slug)
+    public function bookingDesing($id)
     {
-        return view('frontend.booking',compact('slug'));
+        $product=Product::findOrFail($id);
+        return view('frontend.booking',compact('product'));
     }
 
     public function productDetails($id)

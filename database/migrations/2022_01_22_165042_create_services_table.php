@@ -24,6 +24,7 @@ class CreateServicesTable extends Migration
             $table->string('phone');
             $table->string('email');
             $table->text('note');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }
