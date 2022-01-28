@@ -39,6 +39,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'status'=>'required'
         ]);
         Category::create($request->all());
         return redirect()->route('categories.index')->with('success','Category stored successfully!');
@@ -53,7 +54,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+       return view("backend.categories.show",compact('category'));
     }
 
     /**

@@ -31,6 +31,7 @@ Route::post('repairing-submit', 'backend\ServiceController@storeRepairing')->nam
 Route::get('admin/login', 'Auth\AdminAuthController@loginForm')->name('admin.login.get');
 Route::post('admin/login', 'Auth\AdminAuthController@login')->name('admin.login.post');
 Route::post('admin/logout', 'Auth\AdminAuthController@logout')->name('admin.logout');
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::view('dashboard', 'backend.dashboard')->name('admin.dashboard');
     // product route
@@ -47,4 +48,3 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
         return view('backend.carpenter.index');
     })->name('carpenter.index');
 });
-

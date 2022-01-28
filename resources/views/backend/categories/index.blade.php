@@ -15,6 +15,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
+                    @if(count($categories)>0)
                     <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                         <thead>
                         <tr>
@@ -32,12 +33,12 @@
                             <td class="text-center text-muted">{{ $sereal,$sereal++ }}</td>
                             <td class="">{{ $category->name }}</td>
                             <td class="text-center">
-                                <div class="badge badge-success">{{ $category->status }}</div>
+                                <div class="badge {{$category->status=="active"?'badge-success':'badge-danger'}}">{{ $category->status }}</div>
                             </td>
                             <td class="text-center">{{ $category->created_at }}</td>
                             <td class="text-center">
                                 <a href="{{ route('categories.edit',$category->id) }}" class="btn btn-info btn-sm">Edit</a>
-                                <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View</button>
+                                <a href="{{url('admin/categories/'.$category->id)}}" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View</a>
                                 <a
                                     onclick="return confirm('Are you sure you want to delete this item?');"
                                     href="{{ url('admin/delete-category',$category->id) }}"  id="PopoverCustomT-1" class="btn btn-danger btn-sm">Delete</a>
@@ -46,6 +47,9 @@
                         @endforeach
                         </tbody>
                     </table>
+                    @else
+                        <h3 class="text-center text-muted m-3">No category found</h3>
+                    @endif
                 </div>
             </div>
         </div>

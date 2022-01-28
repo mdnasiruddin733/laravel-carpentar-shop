@@ -15,19 +15,20 @@
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="">Name</label>
-                                    <input type="text" name="name" class="form-control" placeholder="Category name">
-                                    <span class="text-danger">@error('name') {{ $message }} @enderror</span>
+                                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Category name">
+                                    @error('name') <span class="text-danger">{{ $message }} </span>@enderror
                                 </div>
                             </div>
 
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="">Status</label>
-                                    <select name="status" class="form-control">
+                                    <select name="status" class="form-control @error('status') is-invalid @enderror" >
                                         <option selected value="">Select one</option>
                                         <option value="active">Active</option>
                                         <option value="inactive">Inactive</option>
                                     </select>
+                                    @error('status')<span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div class="col-lg-12 my-4">

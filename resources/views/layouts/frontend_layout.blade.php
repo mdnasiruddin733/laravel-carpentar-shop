@@ -6,7 +6,7 @@
     <meta name="keywords" content="Male_Fashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Make Your Furniture | Fe-Commerce</title>
+    <title>Make Your Furniture | Woodo</title>
     <link rel="shortcut icon" href="{{ asset('assets/img/favicon.jpg')}}" type="image/png">
 {{--    <link rel="stylesheet" href="{{ asset('assets/css/style-one.css') }}" type="text/css" />--}}
     <link rel="stylesheet" href="{{ asset('assets/css/style-two.css') }}" type="text/css" />
@@ -36,16 +36,16 @@
     <div class="offcanvas__option">
         <div class="offcanvas__links">
             <a href="#">Sign in</a>
-            <a href="#">FAQs</a>
+            <!-- <a href="#">FAQs</a> -->
         </div>
-        <div class="offcanvas__top__hover">
-            <span>Usd <i class="arrow_carrot-down"></i></span>
-            <ul>
+        <!-- <div class="offcanvas__top__hover">
+            <span>Usd <i class="arrow_carrot-down"></i></span> -->
+            <!-- <ul>
                 <li>USD</li>
                 <li>EUR</li>
                 <li>USD</li>
-            </ul>
-        </div>
+            </ul> -->
+        <!-- </div> --> -->
     </div>
     <div class="offcanvas__nav__option">
         <a href="#" class="search-switch"><img src="img/icon/xsearch.png.pagespeed.ic.y-8fLDHdJm.png" alt=""></a>

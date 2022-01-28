@@ -47,8 +47,7 @@
                                 <td class="text-center">
                                     <a href="{{ route('product.edit',$product->id) }}" id="PopoverCustomT-1" class="btn btn-info btn-sm">Edit
                                     </a>
-                                    <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View
-                                    </button>
+                                   <a href="{{url('admin/product/'.$product->id)}}" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View</a>
                                     <a
                                         onclick="return confirm('Are you sure you want to delete this item?');"
                                         href="{{ url('admin/delete-product',$product->id) }}"  id="PopoverCustomT-1" class="btn btn-danger btn-sm">Delete</a>

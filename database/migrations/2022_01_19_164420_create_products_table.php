@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('image');
-            $table->foreignId('category_id')->constrained();
+            $table->integer('category_id')->unsigned()->index();
             $table->string('price');
             $table->string('type');
             $table->string('height');
@@ -27,6 +27,7 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->string('status')->default('active');
             $table->timestamps();
+            $table->foreign("category_id")->references("id")->on("categories")->onDelete("cascade");
         });
     }
 
