@@ -12,7 +12,7 @@
                             <th class="text-center">#</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th class="">Created at</th>
+                            <th class="">Joined at</th>
                             <th class="">Actions</th>
                         </tr>
                         </thead>
@@ -23,7 +23,7 @@
                                 <td class="text-center text-muted">{{ $serial, $serial++ }}</td>
                                 <td class="">{{ $customer->name }}</td>
                                 <td class="">{{ $customer->email }}</td>
-                                <td class="">{{ $customer->created_at }}</td>
+                                <td class="">{{ $customer->created_at->format("d M, Y") }}</td>
                                 <td class="">
                                     <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View
                                     </button>

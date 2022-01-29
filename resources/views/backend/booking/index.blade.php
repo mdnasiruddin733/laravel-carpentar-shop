@@ -4,35 +4,39 @@
         <div class="col-md-12">
             <div class="main-card mb-3 card">
                 <div class="card-header">Booking List
-                    <div class="btn-actions-pane-right">
-                        <a href="#" class="mb-2 mr-2 btn btn-primary">Add Booking</a>
-                    </div>
                 </div>
                 <div class="table-responsive">
                     <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                         <thead>
+                        
                         <tr>
                             <th class="text-center">#</th>
                             <th>Title</th>
-                            <th class="text-center">Created at</th>
+                            <th class="text-center">Booked at</th>
                             <th class="text-center">Status</th>
                             <th class="text-center">Actions</th>
                         </tr>
+                        
                         </thead>
                         <tbody>
+                        @foreach($bookings as $key=>$booking)
                         <tr>
-                            <td class="text-center text-muted">#1</td>
-                            <td class="">Lorem ipsum dolor sit.</td>
-                            <td class="text-center">23/04/2022</td>
+                            <td class="text-center text-muted">{{++$key}}</td>
+                            <td class="">{{$booking->product->name}}.</td>
+                            <td class="text-center">{{$booking->created_at->format("d M, Y")}}</td>
                             <td class="text-center">
-                                <div class="badge badge-success">Active</div>
+                                <div class="badge badge-{{$booking->status=="pending"?"warning":"success" }}">{{$booking->status}}</div>
                             </td>
                             <td class="text-center">
-                                <button type="button" id="PopoverCustomT-1" class="btn btn-info btn-sm">Edit</button>
-                                <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View</button>
-                                <button type="button" id="PopoverCustomT-1" class="btn btn-danger btn-sm">Delete</button>
+                                <a href='{{route('booking.edit',$booking->id)}}' class="btn btn-success">{{$booking->status=="pending"?"Deliver Booking":"Make Pending"}}</a>
+                                   <a href="{{route('booking.show',$booking->id)}}" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View</a>
+                                    <button
+                                        onclick="confirmDelete(event)"
+                                        data-link="{{ route('booking.delete',$booking->id) }}"  id="PopoverCustomT-1" class="btn btn-danger btn-sm">Cancel</button>
+                                </td>
                             </td>
                         </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

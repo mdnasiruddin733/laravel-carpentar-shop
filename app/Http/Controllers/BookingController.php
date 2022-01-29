@@ -18,7 +18,8 @@ class BookingController extends Controller
                 "city"=>"required",
                 "postcode"=>"required",
                 "note"=>"nullable",
-                "product_id"=>"required|exists:products,id"
+                "product_id"=>"required|exists:products,id",
+               
 
             ]
         );

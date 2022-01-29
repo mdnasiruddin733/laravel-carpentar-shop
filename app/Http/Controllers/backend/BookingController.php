@@ -15,7 +15,8 @@ class BookingController extends Controller
      */
     public function index()
     {
-        return  view('backend.booking.index');
+        $bookings=Booking::latest()->get();
+        return  view('backend.booking.index',compact('bookings'));
     }
 
     /**
@@ -47,7 +48,7 @@ class BookingController extends Controller
      */
     public function show(Booking $booking)
     {
-        //
+        return view("backend.booking.show",compact('booking'));
     }
 
     /**
@@ -58,7 +59,19 @@ class BookingController extends Controller
      */
     public function edit(Booking $booking)
     {
-        //
+        if($booking->status=="pending"){
+            $booking->status="delivered";
+            $message="Booking is made delivered";
+        }else{
+             $booking->status="pending";
+             $message="Booking is made pending";
+        }
+        
+        $booking->save();
+        return back()->with([
+            "type"=>"warning",
+            "message"=>$message
+        ]);
     }
 
     /**
@@ -79,8 +92,12 @@ class BookingController extends Controller
      * @param  \App\Models\backend\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Booking $booking)
+    public function delete($id)
     {
-        //
+        Booking::findOrFail($id)->delete();
+        return back()->with([
+            "type"=>"success",
+            "message"=>"Booking cancelled"
+        ]);
     }
 }

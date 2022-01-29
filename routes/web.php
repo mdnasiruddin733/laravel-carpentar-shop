@@ -43,6 +43,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('delete-category/{id}', 'backend\CategoryController@destroy');
     Route::resource('services', 'backend\ServiceController');
     Route::resource('booking', 'backend\BookingController');
+    Route::get("/booking/delete/{id}",[BookingController::class,"delete"])->name("booking.delete");
     Route::resource('orders', 'backend\OrderController');
     Route::resource('customers', 'backend\CustomerController');
     Route::resource('payments', 'backend\PaymentController');
