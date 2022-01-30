@@ -14,8 +14,8 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return  view('backend.orders.index');
+    {   $orders=Order::oldest()->get();
+        return  view('backend.orders.index',compact('orders'));
     }
 
     /**

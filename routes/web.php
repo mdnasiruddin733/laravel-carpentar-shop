@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\backend\BookingController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\RepairController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +38,9 @@ Route::post('admin/logout', 'Auth\AdminAuthController@logout')->name('admin.logo
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::view('dashboard', 'backend.dashboard')->name('admin.dashboard');
+    Route::view('site-settings','backend.settings')->name("site-settings");
+    Route::post("settings",[SettingsController::class,"save"]);
+    Route::get("/download/money-receipt/{id}",[PdfController::class,"download"])->name("download.money-receipt");
     // product route
     Route::resource('product', 'backend\ProductController');
     Route::get('delete-product/{id}', 'backend\ProductController@destroy');

@@ -18,19 +18,21 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($orders as $key=>$order)
                         <tr>
-                            <td class="text-center text-muted">#1</td>
-                            <td class="">Lorem ipsum dolor sit.</td>
-                            <td class="text-center">23/04/2022</td>
+                            <td class="text-center text-muted">#{{++$key}}</td>
+                            <td class="">{{$order->product->name}}</td>
+                            <td class="text-center">{{$order->created_at->format('d/m/Y')}}</td>
                             <td class="text-center">
-                                <div class="badge badge-success">Delivered</div>
+                                <div class="badge badge-{{$order->status=="pending"?"warning":"success"}}">{{$order->status}}</div>
                             </td>
                             <td class="text-center">
-                                <button type="button" id="PopoverCustomT-1" class="btn btn-info btn-sm">Money receipt</button>
+                                <a href='{{url("admin/download/money-receipt/$order->id")}}' id="PopoverCustomT-1" class="btn btn-info btn-sm">Money receipt</a>
                                 <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View </button>
                                 <button type="button" id="PopoverCustomT-1" class="btn btn-danger btn-sm">Cancel</button>
                             </td>
                         </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

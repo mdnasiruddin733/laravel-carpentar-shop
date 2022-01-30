@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\backend\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,7 @@ class FrontendController extends Controller
     public function shop()
     {
         $products = Product::latest()->get();
+       
         return view('frontend.shop',compact('products'));
     }
     public function designList()
@@ -36,7 +38,8 @@ class FrontendController extends Controller
     public function productDetails($id)
     {
         $product = Product::where('id',$id)->first();
-        return view('frontend.product_details',compact('product'));
+         $categories=Category::latest()->get();
+        return view('frontend.product_details',compact('product','categories'));
     }
 
     public function checkout($id)

@@ -2,9 +2,9 @@
 @section('content')
     <section class="hero">
         <div class="hero__slider owl-carousel">
-            <div class="hero__items set-bg" data-setbg="{{ asset('assets/img/hero/hero-1.jpg')}}">
+            <div class="hero__items set-bg" data-setbg="{{ asset(settings()->banner)}}">
             </div>
-            <div class="hero__items set-bg" data-setbg="{{ asset('assets/img/hero/hero-2.jpg') }}">
+            <div class="hero__items set-bg" data-setbg="{{ asset(settings()->banner)}}">
             </div>
         </div>
     </section>

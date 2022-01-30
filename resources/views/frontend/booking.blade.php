@@ -21,6 +21,7 @@
             <div class="checkout__form">
                 <form action="{{route('frontend.booking.create')}}" method="post">
                     @csrf
+                    <input type="hidden" name="order_type" value="booking">
                     <input type="hidden" name="product_id" value="{{$product->id}}">
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
@@ -104,6 +105,7 @@
                                     <li class="my-3">{{$product->description}}</li>
                                 </ul>
                                 <ul class="checkout__total__all">
+                                    
                                     <li>Total Price<span>৳7{{$product->price}}</span></li>
                                 </ul>
                                 <button type="submit" class="site-btn">PLACE ORDER</button>

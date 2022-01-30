@@ -6,7 +6,7 @@
                     <div class="footer__logo">
                         <a href="#"><img src="img/xfooter-logo.png.pagespeed.ic.5uVqqRC5Fm.png" alt=""></a>
                     </div>
-                    <p>The customer is at the heart of our unique business model, which includes design.</p>
+                    <p>{{settings()->slogan}}</p>
                     <a href="#"><img src="img/xpayment.png.pagespeed.ic.jyKRwIPdRp.png" alt=""></a>
                 </div>
             </div>

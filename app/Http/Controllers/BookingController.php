@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\backend\Booking;
+use App\Models\backend\Order;
+
 class BookingController extends Controller
 {
    public function create(Request $req){
@@ -23,7 +25,7 @@ class BookingController extends Controller
 
             ]
         );
-        Booking::create([
+        $data=[
             "name"=>$req->name,
             "email"=>$req->email,
             "phone"=>$req->phone,
@@ -34,7 +36,16 @@ class BookingController extends Controller
             "note"=>$req->note,
             "product_id"=>$req->product_id,
             "status"=>"active"
-        ]);
+        ];
+        $message1="";
+        if($req->order_type==="booking"){
+            Booking::create($data);
+            $message1="Your booking is placed ";
+        }else if($req->order_type==="order"){
+            Order::create($data);
+            $message1="Your order is placed ";
+        }
+        
         if($req->create_account==1){
             if(!empty($req->password)){
                 User::create([
@@ -46,13 +57,13 @@ class BookingController extends Controller
             }
             return back()->with([
                 "type"=>"success",
-                "message"=>"Your booking is placed and account created successfully"
+                "message"=>$message1."and your account is created successfully"
             ]);
         }
 
          return back()->with([
                 "type"=>"success",
-                "message"=>"Your booking is placed"
+                "message"=>$message1
             ]);
         
    }

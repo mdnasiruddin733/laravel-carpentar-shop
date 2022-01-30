@@ -147,7 +147,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{route("site-settings")}}" class=" {{ linkActive('site-settings') ? 'mm-active' : '' }}">
                         <i class="metismenu-icon pe-7s-settings"></i>
                         Site Settings
                     </a>

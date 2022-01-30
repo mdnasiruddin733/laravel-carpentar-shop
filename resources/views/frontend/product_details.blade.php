@@ -44,9 +44,12 @@
                             <h5><span>Guaranteed Safe Checkout</span></h5>
                             <img src="img/shop-details/details-payment.png" alt="">
                             <ul>
-                                <li><span>SKU:</span> 3812912</li>
-                                <li><span>Categories:</span> Clothes</li>
-                                <li><span>Tag:</span> Clothes, Skin, Body</li>
+                                <li><span>SKU:</span> {{$product->created_at->format('dmyhis')}}</li>
+                                <li><span>Categories:</span>
+                                    @foreach ($categories as $category)
+                                        {{$category->name}} @if(!$loop->last) , @endif
+                                    @endforeach
+                                </li>
                             </ul>
                         </div>
                     </div>

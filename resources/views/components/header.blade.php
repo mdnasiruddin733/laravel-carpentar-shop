@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-7">
                     <div class="header__top__left">
-                        <p>Free shipping, 30-day return or refund guarantee.</p>
+                        <p>{{settings()->topbar_ads_text}}</p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-5">
@@ -56,7 +56,7 @@
             <div class="col-lg-3 col-md-3">
                 <div class="header__logo">
                     <a href="{{ url('/') }}">
-                        <img style="padding-top: 10px" src="{{ asset('assets/img/logo.jpg')}}" alt="">
+                        <img style="padding-top: 10px" src="{{ asset(settings()->logo)}}" alt="">
                         {{--                        <h4><span style="color: orangered">F</span>urniture <span style="color: orangered">m</span>art<span>.</span></h4>--}}
                     </a>
                 </div>
