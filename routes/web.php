@@ -64,3 +64,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
 
 
 });
+
+
+Route::view("/test","backend.orders.money_receipt");

@@ -10,7 +10,18 @@ class PdfController extends Controller
 
     public function download($id){
         $order=Order::findOrFail($id);
-        $pdf = PDF::loadView('backend.orders.money_receipt',$order->toArray());
+        $data=[
+            "product_name"=>$order->product->name,
+            "product_image"=>public_path()."/".$order->product->image,
+            "id"=>$order->id,
+            "name"=>$order->name,
+            "phone"=>$order->phone,
+            "email"=>$order->email,
+            "address"=>$order->address,
+            "sku"=>$order->product->created_at->format('dmyhis'),
+            "amount"=>$order->product->price+settings()->delivery_charge
+        ];
+        $pdf = PDF::loadView('backend.orders.money_receipt',$data);
         return $pdf->download("money_receipt.".time().".pdf");
 
     }
