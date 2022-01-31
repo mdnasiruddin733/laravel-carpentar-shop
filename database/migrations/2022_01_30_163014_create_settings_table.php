@@ -15,7 +15,8 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->default("CAMS");
+            $table->string("name")->default("Carpentary Management System");
+            $table->string("short_name")->default("CAMS");
             $table->string("logo")->default("assets/img/logo.jpg");
             $table->string("favicon")->default("assets/img/logo.jpg");
             $table->string("email")->default("contact@cams.com");

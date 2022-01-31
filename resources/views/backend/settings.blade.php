@@ -49,6 +49,15 @@
                         </div>
                     </div>
                     <div class="row mb-2">
+                        <div class="col-md-2"><label for="">Short Name:</label></div>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control @error('short_name') is-invalid @enderror" name="short_name" value="{{settings()->short_name}}">
+                            @error('short_name')
+                             <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row mb-2">
                         <div class="col-md-2"><label for="">Site Email:</label></div>
                         <div class="col-md-10">
                             <input type="text" class="form-control  @error('email') is-invalid @enderror" name="email" value="{{settings()->email}}">

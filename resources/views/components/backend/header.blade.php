@@ -1,6 +1,6 @@
 <div class="app-header bg-white">
     <div class="app-header__logo">
-        <h4>CAMS</h4>
+        <h4>{{settings()->short_name}}</h4>
         <div class="header__pane ml-auto">
             <div>
                 <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
@@ -54,9 +54,8 @@
                                 </a>
                                 <div tabindex="-1" role="menu" aria-hidden="true"
                                      class="dropdown-menu dropdown-menu-right">
-                                    <button type="button" tabindex="0" class="dropdown-item">Profile</button>
-                                    <button type="button" tabindex="0" class="dropdown-item">Change Password</button>
-                                    <button type="button" tabindex="0" class="dropdown-item">Settings</button>
+                                    <a href="{{route('profile.index')}}" tabindex="0" class="dropdown-item">Profile</a>
+                                   <a href="{{route('profile.change-password')}}" tabindex="0" class="dropdown-item">Change Password</a>
                                     <div tabindex="-1" class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

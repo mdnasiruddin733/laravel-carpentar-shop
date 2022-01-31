@@ -9,6 +9,7 @@ class SettingsController extends Controller
     public function save(Request $req){
         $this->validate($req,[
             "name"=>"required",
+            "short_name"=>"required",
             "email"=>"required|email",
             "phone"=>"required",
             "address"=>"required",
@@ -23,6 +24,7 @@ class SettingsController extends Controller
         
         $settings=Settings::firstOrFail();
         $settings->name=$req->name;
+        $settings->short_name=$req->short_name;
         $settings->email=$req->email;
         $settings->phone=$req->phone;
         $settings->address=$req->address;

@@ -28,8 +28,10 @@
                             </td>
                             <td class="text-center">
                                 <a href='{{url("admin/download/money-receipt/$order->id")}}' id="PopoverCustomT-1" class="btn btn-info btn-sm">Money receipt</a>
-                                <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View </button>
-                                <button type="button" id="PopoverCustomT-1" class="btn btn-danger btn-sm">Cancel</button>
+                                <a href="{{route('orders.show',$order->id)}}" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View</a>
+                                    <button
+                                        onclick="confirmDelete(event)"
+                                        data-link="{{ route('orders.delete',$order->id) }}"  id="PopoverCustomT-1" class="btn btn-danger btn-sm">Delete</button>
                             </td>
                         </tr>
                         @endforeach

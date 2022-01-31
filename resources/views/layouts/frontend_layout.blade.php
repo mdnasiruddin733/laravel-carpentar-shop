@@ -6,9 +6,9 @@
     <meta name="keywords" content="Male_Fashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Make Your Furniture | Woodo</title>
+    <title>Make Your Furniture | {{settings()->name}}</title>
+    <link rel="shortcut icon" href="{{asset(settings()->favicon)}}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.jpg')}}" type="image/png">
 {{--    <link rel="stylesheet" href="{{ asset('assets/css/style-one.css') }}" type="text/css" />--}}
     <link rel="stylesheet" href="{{ asset('assets/css/style-two.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('main.css') }}">
@@ -36,7 +36,7 @@
 <div class="offcanvas-menu-wrapper">
     <div class="offcanvas__option">
         <div class="offcanvas__links">
-            <a href="#">Sign in</a>
+            <a href="{{route('login')}}">Sign in</a>
             <!-- <a href="#">FAQs</a> -->
         </div>
         <!-- <div class="offcanvas__top__hover">
@@ -56,7 +56,7 @@
     </div>
     <div id="mobile-menu-wrap"></div>
     <div class="offcanvas__text">
-        <p>Free shipping, 30-day return or refund guarantee.</p>
+        <p>{{settings()->topbar_ads_text}}</p>
     </div>
 </div>
 

@@ -25,10 +25,9 @@
                                 <td class="">{{ $customer->email }}</td>
                                 <td class="">{{ $customer->created_at->format("d M, Y") }}</td>
                                 <td class="">
-                                    <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View
-                                    </button>
-                                    <button type="button" id="PopoverCustomT-1" class="btn btn-danger btn-sm">Delete
-                                    </button>
+                                    <a href="{{route('customers.show',$customer->id)}}" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View
+                                    </a>
+                                    <button class="btn btn-danger" data-link="{{route('customers.delete',$customer->id)}}" onclick="confirmDelete(event)">Delete Account</button>
                                 </td>
                             </tr>
                         @endforeach

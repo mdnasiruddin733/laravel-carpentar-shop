@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\backend\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
 class FrontendController extends Controller
 {
     public function index()
@@ -15,13 +15,13 @@ class FrontendController extends Controller
     }
     public function shop()
     {
-        $products = Product::latest()->get();
+        $products = Product::where("type","sale")->where('status','active')->latest()->get();
        
         return view('frontend.shop',compact('products'));
     }
     public function designList()
     {
-        $products=Product::latest()->get();
+        $products = Product::where("type","booking")->where('status','active')->latest()->get();
         return view('frontend.design',compact("products"));
     }
     public function repairing()
@@ -46,5 +46,17 @@ class FrontendController extends Controller
     {
         $product = Product::where('id',$id)->first();
         return view('frontend.checkout',compact('product'));
+    }
+
+    public function contact(){
+        return view("frontend.contact");
+    }
+
+    public function sendEmail(Request $req){
+      $data = array('name'=>$req->name);
+      Mail::send('mail', $data, function($message) use($req){
+         $message->to(settings()->email, settings()->name)->subject($req->subject);
+         $message->from($req->email,$req->name);
+      });
     }
 }

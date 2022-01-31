@@ -27,7 +27,7 @@
 <body>
 <div class="row my-3">
     <div class="col-md-12 p-3 text-center">
-            <h3 class="text-primary" style="margin-bottom:10px;">{{settings()->name}}</h3>
+            <h3 style="margin-bottom:10px;">{{settings()->name}}</h3>
             <img class="card-img-top" src="{{public_path()."/".settings()->logo}}" alt="" style="width:90px;display:block;margin-bottom:10px;">
             <p class="text-center">Phone:&nbsp;{{settings()->phone}}</p>
             <p class="text-center">Email:&nbsp;{{settings()->email}}</p>

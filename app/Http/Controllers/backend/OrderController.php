@@ -47,7 +47,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view("backend.orders.show",compact('order'));
     }
 
     /**
@@ -58,7 +58,20 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        
+        if($order->status=="pending"){
+            $order->status="delivered";
+            $message="Order is made delivered";
+        }else{
+             $order->status="pending";
+             $message="Order is made pending";
+        }
+        
+        $order->save();
+        return back()->with([
+            "type"=>"warning",
+            "message"=>$message
+        ]);
     }
 
     /**
@@ -82,5 +95,13 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+    public function delete($id)
+    {
+        Order::findOrFail($id)->delete();
+        return back()->with([
+            "type"=>"success",
+            "message"=>"Order cancelled"
+        ]);
     }
 }

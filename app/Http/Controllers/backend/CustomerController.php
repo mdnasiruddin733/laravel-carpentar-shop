@@ -48,9 +48,9 @@ class CustomerController extends Controller
      * @param  \App\Models\backend\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer)
+    public function show(User $customer)
     {
-        //
+        return view("backend.customers.show",compact('customer'));
     }
 
     /**
@@ -82,8 +82,13 @@ class CustomerController extends Controller
      * @param  \App\Models\backend\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function delete($id)
     {
-        //
+        $customer=User::findOrFail($id);
+        $customer->delete();
+       return back()->with([
+           "type"=>"success",
+           "message"=>"Account deleted successfully"
+       ]);
     }
 }

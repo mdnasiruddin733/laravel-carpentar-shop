@@ -1,9 +1,14 @@
 <?php
 
 use App\Http\Controllers\backend\BookingController;
+use App\Http\Controllers\backend\CustomerController;
+use App\Http\Controllers\backend\OrderController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RepairController;
 use App\Http\Controllers\SettingsController;
+use App\Models\backend\Order;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,7 +42,9 @@ Route::post('admin/login', 'Auth\AdminAuthController@login')->name('admin.login.
 Route::post('admin/logout', 'Auth\AdminAuthController@logout')->name('admin.logout');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
-    Route::view('dashboard', 'backend.dashboard')->name('admin.dashboard');
+    Route::get('dashboard', function(){
+        return view("backend.dashboard",["orders"=>Order::latest()->get()]);
+    })->name('admin.dashboard');
     Route::view('site-settings','backend.settings')->name("site-settings");
     Route::post("settings",[SettingsController::class,"save"]);
     Route::get("/download/money-receipt/{id}",[PdfController::class,"download"])->name("download.money-receipt");
@@ -50,7 +57,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::resource('booking', 'backend\BookingController');
     Route::get("/booking/delete/{id}",[BookingController::class,"delete"])->name("booking.delete");
     Route::resource('orders', 'backend\OrderController');
+
+    Route::get("orders/delete/{id}",[OrderController::class,"delete"])->name("orders.delete");
     Route::resource('customers', 'backend\CustomerController');
+    Route::get('customer/{id}', [CustomerController::class,"delete"])->name("customers.delete");
     Route::resource('payments', 'backend\PaymentController');
     Route::get('carpenter', function (){
         return view('backend.carpenter.index');
@@ -61,9 +71,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get("/repairing/delete/{id}",[RepairController::class,"delete"]);
     Route::get('/reparing/approve/{id}',[RepairController::class,"approve"]);
     Route::get('/reparing/disapprove/{id}',[RepairController::class,"disapprove"]);
+    
 
 
 });
 
-
-Route::view("/test","backend.orders.money_receipt");
+Route::get("/profile",[ProfileController::class,"index"])->name("profile.index");
+Route::post("/profile/store",[ProfileController::class,"store"])->name("profile.store");
+Route::get("/profile/change-password",[ProfileController::class,"changePassword"])->name("profile.change-password");
+Route::post("/profile/reset-password",[ProfileController::class,"resetPassword"])->name("profile.reset-password");
+Route::get("/contacts",[FrontendController::class,"contact"])->name("contact.show");

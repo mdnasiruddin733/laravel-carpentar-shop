@@ -12,14 +12,14 @@
                         <div class="header__top__links">
                             <a href="#">FAQs</a>
                         </div>
-                        <div class="header__top__hover">
+                        {{-- <div class="header__top__hover">
                             <span>Usd <i class="arrow_carrot-down"></i></span>
                             <ul>
                                 <li>USD</li>
                                 <li>EUR</li>
                                 <li>USD</li>
                             </ul>
-                        </div>
+                        </div> --}}
 
                             @if(auth()->check())
                                 <div class="header__top__hover">
@@ -64,17 +64,17 @@
             <div class="col-lg-6 col-md-6">
                 <nav class="header__menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="{{ url('/') }}">Home</a></li>
-                        <li><a href="{{ route('frontend.shop') }}">Shop</a></li>
-                        <li>
+                        <li class="@yield('home')"><a href="{{ url('/') }}">Home</a></li>
+                        <li class="@yield('shop')"><a href="{{ route('frontend.shop') }}">Shop</a></li>
+                        <li class="@yield('service')">
                             <a href="#">Service <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
                             <ul class="dropdown">
                                 <li><a href="{{ route('frontend.design') }}">Making</a></li>
                                 <li><a href="{{ route('frontend.repairing') }}">Repairing</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{route('frontend.design')}}">Booking</a></li>
-                        <li><a href="">Contacts</a></li>
+                        <li class="@yield('booking')"><a href="{{route('frontend.design')}}">Booking</a></li>
+                        <li class="@yield('contacts')"><a href="{{route('contact.show')}}">Contacts</a></li>
                     </ul>
                 </nav>
             </div>

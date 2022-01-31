@@ -11,7 +11,7 @@
     </script>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.jpg')}}" type="image/png">
+   <link rel="shortcut icon" href="{{asset(settings()->favicon)}}" type="image/x-icon">
     <title>Make Your Furniture | Woodo</title>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

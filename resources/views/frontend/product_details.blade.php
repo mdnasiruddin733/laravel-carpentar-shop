@@ -1,4 +1,7 @@
 @extends('layouts.frontend_layout')
+@section('shop')
+   active 
+@endsection
 @section('content')
     <section class="breadcrumb-option">
         <div class="container">
