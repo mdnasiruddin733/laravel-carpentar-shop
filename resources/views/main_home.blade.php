@@ -1,10 +1,13 @@
 @extends('layouts.frontend_layout')
+@section('home')
+    active
+@endsection
 @section('content')
     <section class="hero">
         <div class="hero__slider owl-carousel">
             <div class="hero__items set-bg" data-setbg="{{ asset(settings()->banner)}}">
             </div>
-            <div class="hero__items set-bg" data-setbg="{{ asset(settings()->banner)}}">
+            <div class="hero__items set-bg" data-setbg="https://wonderfulengineering.com/wp-content/uploads/2014/04/designer-wallpapers-6.jpg">
             </div>
         </div>
     </section>
@@ -66,13 +69,4 @@
             </div>
         </div>
     </section>
-
-    <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch">+</div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
-            </form>
-        </div>
-    </div>
 @endsection

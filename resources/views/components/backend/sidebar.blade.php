@@ -152,6 +152,12 @@
                         Site Settings
                     </a>
                 </li>
+                <li>
+                    <a href="{{route("faq.index")}}" class=" {{ linkActive('faq.index') ? 'mm-active' : '' }}">
+                        <i class="metismenu-icon fa fa-question"></i>
+                        Manage FAQ
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

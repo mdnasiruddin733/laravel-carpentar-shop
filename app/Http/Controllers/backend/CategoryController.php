@@ -42,7 +42,7 @@ class CategoryController extends Controller
             'status'=>'required'
         ]);
         Category::create($request->all());
-        return redirect()->route('categories.index')->with('success','Category stored successfully!');
+        return redirect()->route('categories.index')->with(['type'=>'success','message'=>'Category stored successfully!']);
 
     }
 
@@ -82,7 +82,7 @@ class CategoryController extends Controller
             'name' => 'required',
         ]);
         $category->update($request->all());
-        return redirect()->route('categories.index')->with('success','Category updated successfully!');
+        return redirect()->route('categories.index')->with(['type'=>'success','message'=>'Category updated successfully!']);
     }
 
     /**
@@ -95,7 +95,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $category->delete();
-        return redirect()->back()->with('success','Category deleted successfully!');
+        return redirect()->back()->with(['type'=>'success','message'=>'Category deleted successfully!']);
 
     }
 }

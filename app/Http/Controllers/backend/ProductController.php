@@ -27,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::select('id','name')->get();
+        $categories = Category::select('id','name')->where('status','active')->get();
         return view('backend.products.create',compact('categories'));
     }
 

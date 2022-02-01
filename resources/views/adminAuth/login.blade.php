@@ -12,7 +12,7 @@
                             <h3 class="mb-4 text-center">{{ __('Admin Login') }}</h3>
                             <div class="form-group">
                                 <label for="email" class="">{{ __('Email') }}</label>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email')??'tisha@gmail.com' }}">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email')}}">
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -23,7 +23,7 @@
                         <div class="col-12 mb-3">
                             <div class="form-group">
                                 <label for="password" class="">{{ __('Password') }}</label>
-                                <input id="password" type="password" value="123456" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password">
+                                <input id="password" type="password" value="{{old('password')}}" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

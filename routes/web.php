@@ -3,6 +3,7 @@
 use App\Http\Controllers\backend\BookingController;
 use App\Http\Controllers\backend\CustomerController;
 use App\Http\Controllers\backend\OrderController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ProfileController;
@@ -71,7 +72,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get("/repairing/delete/{id}",[RepairController::class,"delete"]);
     Route::get('/reparing/approve/{id}',[RepairController::class,"approve"]);
     Route::get('/reparing/disapprove/{id}',[RepairController::class,"disapprove"]);
-    
+
+    Route::get("/faq",[FaqController::class,"index"])->name("faq.index");
+    Route::get("faq/create",[FaqController::class,"create"])->name("faq.create");
+    Route::post("faq/store",[FaqController::class,"store"])->name("faq.store");
+    Route::get("faq/edit/{id}",[FaqController::class,"edit"])->name("faq.edit");
+    Route::post("faq/update",[FaqController::class,"update"])->name("faq.update");
+    Route::get("faq/delete/{id}",[FaqController::class,"delete"])->name("faq.delete");
 
 
 });
@@ -81,3 +88,8 @@ Route::post("/profile/store",[ProfileController::class,"store"])->name("profile.
 Route::get("/profile/change-password",[ProfileController::class,"changePassword"])->name("profile.change-password");
 Route::post("/profile/reset-password",[ProfileController::class,"resetPassword"])->name("profile.reset-password");
 Route::get("/contacts",[FrontendController::class,"contact"])->name("contact.show");
+Route::post("/mail/send",[FrontendController::class,"sendEmail"])->name("mail.send");
+
+Route::post("/search",[FrontendController::class,"search"])->name("frontend.search");
+Route::get("/search/details/{id}",[FrontendController::class,"viewDetails"])->name("search.details");
+Route::get("/faqs",[FrontendController::class,"showFaq"])->name("frontend.faqs");

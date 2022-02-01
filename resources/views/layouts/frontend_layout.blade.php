@@ -7,6 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Make Your Furniture | {{settings()->name}}</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="shortcut icon" href="{{asset(settings()->favicon)}}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 {{--    <link rel="stylesheet" href="{{ asset('assets/css/style-one.css') }}" type="text/css" />--}}
@@ -62,6 +73,15 @@
 
 @include('components.header')
     @yield('content')
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form" method="post" action="{{route('frontend.search')}}">
+                @csrf
+                <input type="text" id="search-input" name="term" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
 @include('components.footer')
 <div class="preloader">
     <h5 class="text-danger"><i class="fa fa-cog  fa-spin "></i>Loading...</h5>
@@ -100,9 +120,10 @@
 	</script>
 	@endif
     <script>
-    setTimeout(() => {
-        document.querySelector('.preloader').style.display = 'none'
-    },1500)
+        window.addEventListener("DOMContentLoaded",function(){
+            document.querySelector('.preloader').style.display = 'none'
+        })
+           
 </script>
 </body>
 </html>

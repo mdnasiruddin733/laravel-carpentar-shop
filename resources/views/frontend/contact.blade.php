@@ -24,8 +24,9 @@
             <div class="row">
                 <div class="col-md-8 mx-auto">
                     <div class="card">
+                    <h3 class="text-center m-3 p-2">Cotact Our Administartor</h3>
                   <div class="card-body">
-                    <form action="" method="post">
+                    <form action="{{route('mail.send')}}" method="post">
                     @csrf 
                     <div class="row mb-2">
                             <div class="col-md-2"><label for="">Name:</label></div>

@@ -13,6 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([AdminSeeder::class,CustomerSeeder::class,CategorySeeder::class,ProductSeeder::class,ServiceSeeder::class,BookingSeeder::class,OrderSeeder::class,PaymentSeeder::class]);
+        $this->call([AdminSeeder::class,CustomerSeeder::class,CategorySeeder::class,ProductSeeder::class,ServiceSeeder::class,BookingSeeder::class,OrderSeeder::class,PaymentSeeder::class,SettingsSeeder::class]);
     }
 }

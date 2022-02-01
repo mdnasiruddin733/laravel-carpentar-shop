@@ -15,6 +15,7 @@
     <title>Make Your Furniture | Woodo</title>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.0/css/font-awesome.min.css" integrity="sha512-FEQLazq9ecqLN5T6wWq26hCZf7kPqUbFC9vsHNbXMJtSZZWAcbJspT+/NEAQkBfFReZ8r9QlA9JHaAuo28MTJA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('main.css') }}">
@@ -57,35 +58,24 @@
 
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	@if(Session::has('message'))
-	<script>
-		var toast=toastr["{{Session::get('type')}}"]("{{Session::get('message')}}")
-		toast.options = {
-			"closeButton": false,
-			"debug": false,
-			"newestOnTop": false,
-			"progressBar": false,
-			"positionClass": "toast-top-right",
-			"preventDuplicates": false,
-			"onclick": null,
-			"showDuration": "300",
-			"hideDuration": "1000",
-			"timeOut": "5000",
-			"extendedTimeOut": "1000",
-			"showEasing": "swing",
-			"hideEasing": "linear",
-			"showMethod": "slideIn",
-			"hideMethod": "slideOut"
-			}
-
-	</script>
-	@endif
+	
     <script>
-    setTimeout(() => {
-        document.querySelector('.preloader').style.display = 'none'
-    }, 1000)
+    window.addEventListener("DOMContentLoaded",function(){
+            document.querySelector('.preloader').style.display = 'none'
+        })
 </script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if(Session::has('message'))
+	<script>
+        Swal.fire({
+            position: 'top-center',
+            icon: "{{Session::get('type')}}",
+            title: "{{Session::get('message')}}",
+            showConfirmButton: false,
+            timer: 1500
+        })
+	</script>
+@endif
 	<script>
 		function confirmDelete(event){
 			Swal.fire({
