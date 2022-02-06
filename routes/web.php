@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\backend\BookingController;
-use App\Http\Controllers\backend\CustomerController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\backend\OrderController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FrontendController;
@@ -98,7 +98,6 @@ Route::get("/faqs",[FrontendController::class,"showFaq"])->name("frontend.faqs")
 
 
 
-
 Route::post('/pay', [SslCommerzPaymentController::class, 'index'])->name("pay");
 
 
@@ -108,3 +107,15 @@ Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
+
+
+Route::group(["middleware"=>"auth"],function(){
+    Route::get("/customer/profile",[CustomerController::class,"showProfile"])->name("customer.profile");
+    Route::post("/customer/profile/update",[CustomerController::class,"updateProfile"])->name("customer.profile.update");
+    Route::get("/customer/profile/details",[CustomerController::class,"showProfileDetails"])->name("customer.profile.details");
+    Route::post("/customer/profile/details/update",[CustomerController::class,"updateProfileDetails"])->name("customer.profile.details.update");
+    Route::get("/customer/profile/my-orders",[CustomerController::class,"showMyOrders"])->name("customer.profile.my-orders");
+    Route::get("/customer/download-invoice/{id}",[PdfController::class,"download"])->name("customer.download-invoice");
+    Route::get("/customer/profile/change-password",[CustomerController::class,"changePassword"])->name("customer.profile.change-password");
+    Route::post("/customer/profile/reset-password",[CustomerController::class,"resetPassword"])->name("customer.profile.reset-password");
+});

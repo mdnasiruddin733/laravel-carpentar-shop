@@ -21,12 +21,11 @@
                             </ul>
                         </div> --}}
 
-                            @if(auth()->check())
+                            @if(Auth::guard('web')->check())
                                 <div class="header__top__hover">
                                     <span>{{ auth()->user()->name }} <i class="arrow_carrot-down"></i></span>
                                     <ul style="padding: 10px; width: 180px;">
-                                        <li style="text-align: left;font-size: 15px"><a  class="dropdown-item" href="">Profile</a></li>
-                                        <li style="text-align: left;font-size: 15px"><a class="dropdown-item" href="">Settings</a></li>
+                                        <li style="text-align: left;font-size: 15px"><a  class="dropdown-item" href="{{route('customer.profile')}}">Profile</a></li>
                                         <li style="text-align: left;font-size: 15px">
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                onclick="event.preventDefault();
@@ -41,10 +40,19 @@
                                     </ul>
                                 </div>
                             @else
+
+                            @if(!Auth::guard('admin')->check())
                             <div class="header__top__links">
                                 <a href="{{ route('login') }}">Sign in</a>
                             </div>
+                            @endif 
                             @endif
+                            @if(Auth::guard('admin')->check())
+                            <div class="header__top__links">
+                                <a href="{{ route('admin.login.get') }}">Dashboard</a>
+                            </div>
+                            @endif
+                            
 
                     </div>
                 </div>

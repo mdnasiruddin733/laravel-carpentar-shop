@@ -71,7 +71,7 @@
             <td><img src="{{$product_image}}" alt="" style="width:100px;height:70px;"></td>
         </tr>
         <tr>
-            <th>Payable Amount:</th>
+            <th>Amount Paid:</th>
             <td>{{$amount}}TK.</td>
         </tr>
     </tbody>

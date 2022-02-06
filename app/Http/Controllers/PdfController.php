@@ -24,6 +24,7 @@ class PdfController extends Controller
         ];
         $pdf = PDF::loadView('backend.orders.money_receipt',$data);
         return $pdf->download("money_receipt.".time().".pdf");
+        
 
     }
 

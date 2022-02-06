@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Mail\OrderPlaced;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Models\backend\Order;
-
+use Illuminate\Support\Facades\Auth;
 class SslCommerzPaymentController extends Controller
 {
 
@@ -67,6 +67,7 @@ class SslCommerzPaymentController extends Controller
             $post_data['product_amount'] = "1";
             
             $data=[
+                "user_id"=>Auth::user()->id,
                 "name"=>$req->name,
                 "email"=>$req->email,
                 "phone"=>$req->phone,
@@ -109,19 +110,19 @@ class SslCommerzPaymentController extends Controller
       $order->bank_tran_id=$bank_tran_id;
       $order->status="Completed";
       $order->save();
-        $toemail=$order->email;
-        $data = [
-            "name"=>$order->name,
-            "tran_id"=>$tran_id,
-            "product_name"=>$order->product->name,
-            "amount"=>$order->amount
-        ];
-        Mail::send('frontend.invoice-mail', $data, function($message) use($toemail,$data){
-            $message->to($toemail, $data["name"])->subject("Your order is placed");
-            $message->from(settings()->email,settings()->name);
-        });
-      
-      return redirect(url("/"))->with(["type"=>"success","message"=>"Your order is placed successfully"]);
+      $toemail=$order->email;
+        // $data = [
+        //     "name"=>$order->name,
+        //     "tran_id"=>$tran_id,
+        //     "product_name"=>$order->product->name,
+        //     "amount"=>$order->amount
+        // ];
+        // Mail::send('frontend.invoice-mail', $data, function($message) use($toemail,$data){
+        //     $message->to($toemail, $data["name"])->subject("Your order is placed");
+        //     $message->from(settings()->email,settings()->name);
+        // });
+      Mail::to($toemail)->send(new OrderPlaced($order));
+      return redirect(url("/login"))->with(["type"=>"success","message"=>"Your order is placed successfully"]);
 
     }
 
