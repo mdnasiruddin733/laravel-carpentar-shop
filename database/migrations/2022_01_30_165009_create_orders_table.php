@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("product_id");
+            $table->unsignedBigInteger("user_id");
             $table->foreign("product_id")->references("id")->on("products")->onDelete("cascade");
             $table->string('name');
             $table->string('address');
@@ -24,7 +24,10 @@ class CreateOrdersTable extends Migration
             $table->string('postcode');
             $table->string('phone');
             $table->string('email');
+            $table->double("amount");
             $table->text('note')->nullable();
+            $table->string("tran_id");
+            $table->string("bank_tran_id")->nullable();
             $table->string('status')->default('pending');
             $table->timestamps();
         });

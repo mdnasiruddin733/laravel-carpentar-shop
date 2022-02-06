@@ -11,7 +11,9 @@
                         <thead>
                         <tr>
                             <th class="text-center">#</th>
-                            <th>Product</th>
+                            <th>Product Name</th>
+                            <th>Transaction ID.</th>
+                            <th>Amount</th>
                             <th class="text-center">Created at</th>
                             <th class="text-center">Status</th>
                             <th class="text-center">Actions</th>
@@ -22,11 +24,14 @@
                         <tr>
                             <td class="text-center text-muted">#{{++$key}}</td>
                             <td class="">{{$order->product->name}}</td>
+                            <td>{{$order->tran_id}}</td>
+                            <td>{{$order->amount}}</td>
                             <td class="text-center">{{$order->created_at->format('d/m/Y')}}</td>
                             <td class="text-center">
-                                <div class="badge badge-{{$order->status=="pending"?"warning":"success"}}">{{$order->status}}</div>
+                                <div class="badge badge-{{$order->status=="Pending"?"warning":"success"}}">{{$order->status}}</div>
                             </td>
                             <td class="text-center">
+                                
                                 <a href='{{url("admin/download/money-receipt/$order->id")}}' id="PopoverCustomT-1" class="btn btn-info btn-sm">Money receipt</a>
                                 <a href="{{route('orders.show',$order->id)}}" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View</a>
                                     <button

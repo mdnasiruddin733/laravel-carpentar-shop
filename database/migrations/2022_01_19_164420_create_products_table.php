@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             $table->string('height');
             $table->string('width');
             $table->string('color');
-            $table->string('short_description');
+            $table->text('short_description');
             $table->text('description');
             $table->string('status')->default('active');
             $table->timestamps();

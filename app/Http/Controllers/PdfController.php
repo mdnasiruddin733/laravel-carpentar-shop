@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\backend\Order;
 use Illuminate\Http\Request;
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 class PdfController extends Controller
 
 {
@@ -11,6 +11,7 @@ class PdfController extends Controller
     public function download($id){
         $order=Order::findOrFail($id);
         $data=[
+            "tran_id"=>$order->tran_id,
             "product_name"=>$order->product->name,
             "product_image"=>public_path()."/".$order->product->image,
             "id"=>$order->id,

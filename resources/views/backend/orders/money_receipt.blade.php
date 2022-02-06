@@ -39,6 +39,10 @@
 <table class="table table-stripped" style="margin-bottom:50px;">
     <tbody>
         <tr>
+            <th>Transcation ID:</th>
+            <td>{{$tran_id}}</td>
+        </tr>
+        <tr>
             <th>Customer Name:</th>
             <td>{{$name}}</td>
         </tr>

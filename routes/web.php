@@ -11,7 +11,9 @@ use App\Http\Controllers\RepairController;
 use App\Http\Controllers\SettingsController;
 use App\Models\backend\Order;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\SslCommerzPaymentController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -80,7 +82,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::post("faq/update",[FaqController::class,"update"])->name("faq.update");
     Route::get("faq/delete/{id}",[FaqController::class,"delete"])->name("faq.delete");
 
-
+    
 });
 
 Route::get("/profile",[ProfileController::class,"index"])->name("profile.index");
@@ -93,3 +95,16 @@ Route::post("/mail/send",[FrontendController::class,"sendEmail"])->name("mail.se
 Route::post("/search",[FrontendController::class,"search"])->name("frontend.search");
 Route::get("/search/details/{id}",[FrontendController::class,"viewDetails"])->name("search.details");
 Route::get("/faqs",[FrontendController::class,"showFaq"])->name("frontend.faqs");
+
+
+
+
+Route::post('/pay', [SslCommerzPaymentController::class, 'index'])->name("pay");
+
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END

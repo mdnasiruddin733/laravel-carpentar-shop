@@ -19,7 +19,7 @@
     <section class="checkout spad">
         <div class="container">
             <div class="checkout__form">
-                <form action="{{route('frontend.booking.create')}}" method="post">
+                <form action="{{route('pay')}}" method="post">
                     @csrf
                      <input type="hidden" name="order_type" value="order">
                     <input type="hidden" name="product_id" value="{{$product->id}}">
@@ -28,41 +28,41 @@
                             <h6 class="checkout__title">Billing Details</h6>
                             <div class="checkout__input">
                                 <p>Name<span>*</span></p>
-                                <input type="text" name="name">
+                                <input type="text" name="name" @customer value="{{auth()->user()->name}}" @endcustomer>
                                 @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="checkout__input">
                                 <p>Country<span>*</span></p>
-                                <input type="text" name="country" placeholder="">
+                                <input type="text" name="country" placeholder="" @customer value="{{auth()->user()->details->country}}" @endcustomer>
                                 @error('country')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="checkout__input">
                                 <p>Address<span>*</span></p>
-                                <input type="text" name="address" placeholder="Apartment, suite, unite ect (optinal)">
+                                <input type="text" name="address" placeholder="Apartment, suite, unite ect (optinal)" @customer value="{{auth()->user()->details->address}}" @endcustomer>
                                 @error('address')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="checkout__input">
                                 <p>Town/City<span>*</span></p>
-                                <input type="text" name="city">
+                                <input type="text" name="city" @customer value="{{auth()->user()->details->city}}" @endcustomer>
                                 @error('city')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="checkout__input">
                                 <p>Postcode / ZIP<span>*</span></p>
-                                <input type="text" name="postcode">
+                                <input type="text" name="postcode" @customer value="{{auth()->user()->details->postcode}}" @endcustomer>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Phone<span>*</span></p>
-                                        <input type="text" name="phone">
+                                        <input type="text" name="phone" @customer value="{{auth()->user()->details->phone}}" @endcustomer>
                                         @error('phone')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -71,13 +71,14 @@
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Email<span>*</span></p>
-                                        <input type="text" name="email">
+                                        <input type="email" name="email" @customer value="{{auth()->user()->email}}" @endcustomer>
                                         @error('email')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
+                            @guest
                             <div class="checkout__input__checkbox">
                                 <label for="acc">
                                     Create an account?
@@ -91,6 +92,7 @@
                                 <p>Account Password<span>*</span></p>
                                 <input type="password" name="password">
                             </div>
+                            @endguest
                             <div class="checkout__input">
                                 <p>Order notes<span>*</span></p>
                                 <input type="text" placeholder="Notes about your order, e.g. special notes for delivery.">
@@ -112,7 +114,10 @@
                                      
                                      
                                 </ul>
-                                <button type="submit" class="site-btn">PLACE ORDER</button>
+                                
+                                <button type="submit" class="site-btn">
+                                    PLACE ORDER
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -122,3 +127,16 @@
     </section>
 @endsection
 
+@section("sslc-scripts")
+<script>
+    (function (window, document) {
+        var loader = function () {
+            var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];
+            script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7);
+            tag.parentNode.insertBefore(script, tag);
+        };
+
+        window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+    })(window, document);
+</script>
+@endsection

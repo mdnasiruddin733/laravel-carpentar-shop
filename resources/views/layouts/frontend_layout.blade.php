@@ -86,7 +86,7 @@
 <div class="preloader">
     <h5 class="text-danger"><i class="fa fa-cog  fa-spin "></i>Loading...</h5>
 </div>
-
+@yield("scripts")
 <script src="{{ asset('assets/js/jquery-3.3.1.min.js')}}"></script>
 {{--<script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>--}}
 {{--<script src="{{ asset('assets/js/jquery.js')}}"></script>--}}
@@ -125,5 +125,7 @@
         })
            
 </script>
+
+
 </body>
 </html>
